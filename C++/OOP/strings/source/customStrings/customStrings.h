@@ -5,9 +5,12 @@
 class strings
 {
 private:
-    unsigned int stringLength = 0;
+    unsigned int _stringLength = 0;
 
-    char * stringSymbols;
+    char * _stringSymbols;
+
+    void _clear();
+    void _create(const char charMas[]);
 
 public:
     strings();
@@ -16,6 +19,17 @@ public:
     ~strings();
 
     unsigned int length();
+
+    void print();
+
+    
+
+
+
+
+    // Операторы
+
+    const strings& operator = (const char charMas[]);
 
 
 };
