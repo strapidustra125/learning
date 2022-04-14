@@ -14,7 +14,7 @@ cd ../build/buildTemp || exit
 echo -e "Starting \"cmake\" for project:\n"
 
 #Запуск CMAKE
-cmake -DTOOLCHAIN_FLAG=OFF ../../
+cmake ../../
 
 echo -e "\n\"cmake\" for project finished!\n\n"
 
@@ -28,4 +28,4 @@ echo -e "\n\"make\" for project finished!\n"
 
 # Инфо о файле
 echo -n "Result file info: " 
-file ../rimModule
+file ../strings_test
