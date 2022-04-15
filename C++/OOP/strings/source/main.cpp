@@ -3,15 +3,15 @@
 
 int main()
 {
-    strings s = "test";
+    String s2 = "aaaa";
+    char s3 = 's';
+    String s1;
+    
+    s1 = s2 + s3;
 
-    std::cout << "s.length() = " << s.length() << std::endl;
-
-    s.print();
-
-    s = "lol";
-
-    s.print();
+    s1.print();
+    std::cout << std::endl;
+    
 
     return 0;
 }

@@ -2,7 +2,7 @@
 #define _CUSTOM_STRINGS_LIB__
 
 
-class strings
+class String
 {
 private:
     unsigned int _stringLength = 0;
@@ -11,12 +11,14 @@ private:
 
     void _clear();
     void _create(const char charMas[]);
+    void _create(const String& string);
 
 public:
-    strings();
-    strings(const char[]);
+    String();
+    String(const char[]);
+    String(const String& string);
 
-    ~strings();
+    ~String();
 
     unsigned int length();
 
@@ -29,11 +31,30 @@ public:
 
     // Операторы
 
-    const strings& operator = (const char charMas[]);
+    const String& operator = (const char charMas[]);
+    const String& operator = (const String& string);
 
+    const String& operator + (const char charMas[]);
+    const String& operator + (const String& string);
+    const String& operator + (char symbol);
+
+    const char& operator [] (int i);
+
+    bool operator == (const String& string);
+    bool operator != (const String& string);
+
+
+
+
+
+
+
+
+
+    // std::ostream& operator << (std::ostream &out);
 
 };
 
-
+// std::ostream& operator << (std::ostream &out, const String& string);
 
 #endif
