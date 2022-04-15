@@ -1,6 +1,8 @@
 #ifndef _CUSTOM_STRINGS_LIB__
 #define _CUSTOM_STRINGS_LIB__
 
+#include <iostream>
+
 
 class String
 {
@@ -21,6 +23,7 @@ public:
     ~String();
 
     unsigned int length();
+    char symbol(unsigned int i);
 
     void print();
 
@@ -46,6 +49,7 @@ public:
 
 
 
+    friend std::ostream& operator << (std::ostream &out, const String& string);
 
 
 
@@ -55,6 +59,5 @@ public:
 
 };
 
-// std::ostream& operator << (std::ostream &out, const String& string);
 
 #endif

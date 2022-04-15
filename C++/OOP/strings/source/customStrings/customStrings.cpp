@@ -4,61 +4,12 @@
 
 
 
-
-
-
-
-String::String() 
-{
-    std::cout << "Default constructor" << std::endl;
-}
-
-
-String::String(const char charMas[]) 
-{
-    std::cout << "Reload constructor" << std::endl;
-
-    this->_create(charMas);
-}
-
-String::String(const String& string) 
-{
-    std::cout << "Copy constructor" << std::endl;
-
-    this->_create(string);
-}
-
-
-String::~String() 
-{
-    std::cout << "Destructor" << std::endl;
-
-    this->_clear();
-}
-
-
-
-unsigned int String::length()
-{
-    return _stringLength;
-}
-
-
-void String::print()
-{
-    for(unsigned int i = 0; i < _stringLength; i++) std::cout << _stringSymbols[i];
-}
-
-
-
 void String::_clear()
 {
     if(this->_stringSymbols != nullptr) delete[] this->_stringSymbols;
 
     this->_stringLength = 0;
 }
-
-
 
 void String::_create(const char charMas[])
 {
@@ -72,7 +23,6 @@ void String::_create(const char charMas[])
 
     this->_stringLength = strLength;
 }
-
 
 void String::_create(const String& string)
 {
@@ -90,10 +40,56 @@ void String::_create(const String& string)
 
 
 
+String::String() 
+{
+    std::cout << "Default constructor" << std::endl;
+}
+
+String::String(const char charMas[]) 
+{
+    std::cout << "Reload constructor" << std::endl;
+
+    this->_create(charMas);
+}
+
+String::String(const String& string) 
+{
+    std::cout << "Copy constructor" << std::endl;
+
+    this->_create(string);
+}
+
+String::~String() 
+{
+    std::cout << "Destructor" << std::endl;
+
+    this->_clear();
+}
+
+
+
+
+
+
+unsigned int String::length()
+{
+    return _stringLength;
+}
+
+char String::symbol(unsigned int i)
+{
+    return this->_stringSymbols[i];
+}
+
+void String::print()
+{
+    for(unsigned int i = 0; i < _stringLength; i++) std::cout << _stringSymbols[i];
+}
+
+
 
 
 // Операторы
-
 
 const String& String::operator = (const char charMas[])
 {
@@ -200,35 +196,11 @@ bool String::operator != (const String& string)
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// std::ostream& operator << (std::ostream &out, const String& string)
-// {
-//     for(unsigned int i = 0; i < )
-//     return out;
-// }
-
-// std::ostream& String::operator << (std::ostream &out)
-// {
-//     for(unsigned int i = 0; i < this->_stringLength; i++)
-//         out << this->_stringSymbols[i];
-    
-//     return out;
-// }
+std::ostream& operator << (std::ostream &out, const String& string)
+{
+    for(unsigned int i = 0; i < string._stringLength; i++)
+    {
+        out << string._stringSymbols[i];
+    }
+    return out;
+}
