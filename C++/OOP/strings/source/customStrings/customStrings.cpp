@@ -3,14 +3,19 @@
 
 
 
+// Приватные методы
 
+// Очистка значений полей
 void String::_clear()
 {
+    // Удаление указателя на массив символов, если он не nullptr
     if(this->_stringSymbols != nullptr) delete[] this->_stringSymbols;
 
+    // обнуление длины строки
     this->_stringLength = 0;
 }
 
+// 
 void String::_create(const char charMas[])
 {
     unsigned int strLength = 0;
@@ -79,11 +84,6 @@ unsigned int String::length()
 char String::symbol(unsigned int i)
 {
     return this->_stringSymbols[i];
-}
-
-void String::print()
-{
-    for(unsigned int i = 0; i < _stringLength; i++) std::cout << _stringSymbols[i];
 }
 
 
