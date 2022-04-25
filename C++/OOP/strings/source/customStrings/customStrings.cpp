@@ -47,27 +47,20 @@ void String::_create(const String& string)
 
 String::String() 
 {
-    std::cout << "Default constructor" << std::endl;
 }
 
 String::String(const char charMas[]) 
 {
-    std::cout << "Reload constructor" << std::endl;
-
     this->_create(charMas);
 }
 
 String::String(const String& string) 
 {
-    std::cout << "Copy constructor" << std::endl;
-
     this->_create(string);
 }
 
 String::~String() 
 {
-    std::cout << "Destructor" << std::endl;
-
     this->_clear();
 }
 
