@@ -5,16 +5,29 @@
 
 class Ingredient
 {
-// Приватные поля
-private:
-    
-    String _name;
 
+
+// Публичные поля
+public:
+    // Размерность
+    enum dimension
+    {
+        ml,
+        l,
+        g,
+        kg
+    };
 
 
 public:
     Ingredient(/* args */);
     ~Ingredient();
+
+// Приватные поля
+private:
+    String _name;
+    int _value;
+
 };
 
 
