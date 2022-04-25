@@ -1,3 +1,3 @@
 #!/bin/bash
 
-../build/strings_test
+../build/coctail

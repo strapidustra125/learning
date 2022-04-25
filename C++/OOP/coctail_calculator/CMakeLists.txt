@@ -2,8 +2,8 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 
-# Характеристики проекта "rim_project"
-set(PROJECT "strings_test")
+# Характеристики проекта
+set(PROJECT "coctail_calculator")
 project(${PROJECT} VERSION 1.0 LANGUAGES CXX)
 
 
@@ -14,10 +14,17 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra")
 
 
 set(SUBMODULE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source)
-
+set(STRINGS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../strings/source/customStrings)
+# /strings/source/customStrings/customStrings.cpp
 # Добавляем подмодули из директории ./source
-include_directories(${SUBMODULE_SOURCES}/customStrings)
-add_subdirectory(${SUBMODULE_SOURCES}/customStrings)
+include_directories(${STRINGS_SOURCES})
+include_directories(${SUBMODULE_SOURCES}/coctail)
+include_directories(${SUBMODULE_SOURCES}/dataBase)
+include_directories(${SUBMODULE_SOURCES}/ingredient)
+
+add_subdirectory(${SUBMODULE_SOURCES}/coctail)
+add_subdirectory(${SUBMODULE_SOURCES}/dataBase)
+add_subdirectory(${SUBMODULE_SOURCES}/ingredient)
 
 set(MAIN ${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp)
 
@@ -25,15 +32,19 @@ set(MAIN ${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp)
 # Исполняемый файл
 
 # Имя исполняемого файла для сборки
-set(TARGET strings_test)
+set(TARGET coctail)
 
 # Исполняемый файл с исходниками библиотек
-add_executable(${TARGET} ${MAIN})
+add_executable(       
+        ${TARGET} 
+        ${MAIN}
+        ${STRINGS_SOURCES}/customStrings.cpp
+)
 
 # Директория для сборки бинарника
 set_target_properties(${TARGET} PROPERTIES 
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build
 )
 
-# Линковка библиотек (ПОРЯДОК ВАЖЕН!!!!!)
-target_link_libraries(${TARGET} customStrings)
+# # Линковка библиотек (ПОРЯДОК ВАЖЕН!!!!!)
+# target_link_libraries(${TARGET} customStrings)

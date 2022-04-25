@@ -28,4 +28,4 @@ echo -e "\n\"make\" for project finished!\n"
 
 # Инфо о файле
 echo -n "Result file info: " 
-file ../strings_test
+file ../coctail
