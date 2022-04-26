@@ -1,12 +1,12 @@
-#ifndef _TREE_LIB__
-#define _TREE_LIB__
+#ifndef _LIST_LIB_
+#define _LIST_LIB_
 
 #include <iostream>
 #include <vector>
 #include "customStrings.h"
 
 template<typename T>
-class Tree
+class List
 {
 private:
     
@@ -14,73 +14,64 @@ private:
 
 public:
 
-    Tree();
-
-    Tree(Type data)
-    {
-        
-    }
-
-    ~Tree();
-
-    void print();
-
-
-
-
-
-
-    // Индекс вершины
-    static unsigned int _index = 0;
-
-    // Имя, по которому искать элемент
-    String _itemName;
-
     // Полезные данные любого типа
-    T _data;
-
-    // Указатель на родителя
-    Tree * _pParent;
-
-    // Массив адресов детей
-    std::vector<Tree> * _children;
+    template<typename T>
+    class Node
+    {
+    public:
+        Node * _pNext;
+        T _data;
+        
+        Node(T data=T(), Node * pNext=nullptr)
+        {
+            this->_data = data;
+            this->_pNext = pNext;
+        }
+        ~Node() {}
+    };
+    
+    unsigned int _length;
+    Node<T> * _head;
+    
 
 
 
 
     // Функции
 
-    // Добавить ребенка
-
-    // Удалить поддерево
-
-    // Обход дерева
+    void pushBack(T data);
 
 
 
+    List();
 
-
-    // Перегрузить оператор обращения по индексу
-
-    // Оператор обращения по индексу
-    const T& operator [] (String name)
+    List(Type data)
     {
-
+        
     }
 
+    ~List();
+
+
+    // Оператор обращения по индексу
+    const T& operator [] (String name) {}
 };
 
 
-
-
-
-
-
 template<typename T>
-void Tree<T>::print()
+void List<T>::pushBack(T data)
 {
+    if(this->_head == nullptr)
+    {
 
+    }
+    else
+    {
+        
+    }
 }
+
+
 
 
 
