@@ -14,10 +14,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra")
 
 
 set(SUBMODULE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source)
+set(STRINGS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../strings/source/customStrings)
 
 # Добавляем подмодули из директории ./source
-include_directories(${SUBMODULE_SOURCES}/customStrings)
-add_subdirectory(${SUBMODULE_SOURCES}/customStrings)
+include_directories(${STRINGS_SOURCES})
 
 set(MAIN ${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp)
 
@@ -28,12 +28,12 @@ set(MAIN ${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp)
 set(TARGET ${PROJECT})
 
 # Исполняемый файл с исходниками библиотек
-add_executable(${TARGET} ${MAIN})
+add_executable(${TARGET} 
+                ${MAIN}
+                ${STRINGS_SOURCES}/customStrings.cpp
+                )
 
 # Директория для сборки бинарника
 set_target_properties(${TARGET} PROPERTIES 
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build
 )
-
-# Линковка библиотек (ПОРЯДОК ВАЖЕН!!!!!)
-target_link_libraries(${TARGET} customStrings)
