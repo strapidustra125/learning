@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 
 # Характеристики проекта "rim_project"
-set(PROJECT "tree_test")
+set(PROJECT "list_test")
 project(${PROJECT} VERSION 1.0 LANGUAGES CXX)
 
 
@@ -17,6 +17,8 @@ set(SUBMODULE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source)
 set(STRINGS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../strings/source/customStrings)
 
 # Добавляем подмодули из директории ./source
+include_directories(${SUBMODULE_SOURCES}/list)
+
 include_directories(${STRINGS_SOURCES})
 
 set(MAIN ${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp)
