@@ -22,6 +22,9 @@ private:
     // Инициализация новой строки из массива символов
     void _create(const char charMas[]);
 
+    // Инициализация новой строки из целого беззнакового числа
+    void _create(unsigned int num);
+
     // Инициализация новой строки из другой строки такого же типа
     void _create(const String& string);
 
@@ -33,6 +36,9 @@ public:
     // Конструктор создания строки из массива символов
     String(const char[]);
 
+    // Конструктор создания строки из целого беззнакового числа
+    String(unsigned int num);
+
     // Конструктор копирования
     String(const String& string);
 
@@ -43,8 +49,8 @@ public:
     // Получение значения поля _stringLength
     unsigned int length();
 
-    // Получение значения массива символов _stringSymbols по индексу i
-    char symbol(unsigned int i);
+    // Перевернуть строку
+    void reverse();
 
 
     // Перегрузка операторов

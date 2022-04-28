@@ -5,20 +5,31 @@
 
 int main()
 {
-    List<String> list;
+    List<int> list;
 
-    list.pushBack("1");
-    list.pushBack("2");
+
+    // list.pushBack("1");
+    // list.pushBack("2");
+    // list.pushBack("3");
+
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+
+    list.__DEBUG__PRINT__();
+
     
-    list.insert("132", 0);
 
 
-    std::cout << "List:" << std::endl;
+    list.clear();
 
-    for(unsigned int i = 0; i < list.size(); i++)
-    {
-        std::cout << "\t" << list[i] << std::endl;
-    }
+    std::cout << list.size() << std::endl;
+
+    list.__DEBUG__PRINT__();
+
+
+
+    list.~List();
     
 
     return 0;

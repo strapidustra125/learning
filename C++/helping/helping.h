@@ -73,6 +73,9 @@ namespace help
 
     // Проверка: является ли строка IPv4 адресом
     bool isIPv4Address(std::string IPAddress);
+
+    // Подсчет числа цифр в числе
+    unsigned int countDigits(unsigned int number);
 }
 
 #endif

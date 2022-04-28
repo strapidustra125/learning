@@ -29,6 +29,28 @@ void String::_create(const char charMas[])
     this->_stringLength = strLength;
 }
 
+void String::_create(unsigned int num)
+{
+    unsigned int strLength = 0, temp = num;
+    while(temp > 0) 
+    {
+        strLength++;
+        temp /= 10;
+    }
+
+    this->_stringSymbols = new char[strLength];
+
+    for(unsigned int i = 0; i < strLength; i++) 
+    {
+        this->_stringSymbols[i] = (int)(num%10 + 48);
+        num /= 10;
+    }
+
+    this->_stringLength = strLength;
+
+    this->reverse();
+}
+
 void String::_create(const String& string)
 {
     unsigned int strLength = string._stringLength;
@@ -54,6 +76,11 @@ String::String(const char charMas[])
     this->_create(charMas);
 }
 
+String::String(unsigned int num)
+{
+    this->_create(num);
+}
+
 String::String(const String& string) 
 {
     this->_create(string);
@@ -74,9 +101,15 @@ unsigned int String::length()
     return _stringLength;
 }
 
-char String::symbol(unsigned int i)
+void String::reverse()
 {
-    return this->_stringSymbols[i];
+    char temp;
+    for(unsigned int i = 0; i < this->_stringLength / 2; i++)
+    {
+        temp = this->_stringSymbols[i];
+        this->_stringSymbols[i] = this->_stringSymbols[this->_stringLength - i - 1];
+        this->_stringSymbols[this->_stringLength - i - 1] = temp;
+    }
 }
 
 

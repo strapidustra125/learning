@@ -14,7 +14,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra")
 
 
 set(SUBMODULE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source)
-set(STRINGS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../strings/source/customStrings)
+set(STRINGS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../../OOP/strings/source/customStrings)
 
 # Добавляем подмодули из директории ./source
 include_directories(${SUBMODULE_SOURCES}/list)
