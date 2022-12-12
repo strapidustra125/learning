@@ -1,3 +1,5 @@
+// Успешная посылка: 78886466
+
 #include <iostream>
 #include <set>
 #include <vector>
@@ -12,17 +14,22 @@
 	#define in std::cin
 #endif
 
-std::ifstream fin("in.txt");
-std::ofstream fout("out.txt");
+std::ifstream fin("../in");
+std::ofstream fout("../out");
 
 int main()
 {
+
+#ifndef MY_IDE
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(NULL);
+#endif
+
 	long n;
 	in >> n;
 
 	int* numbers = new int[n];
-	bool firstZero_flag = true;
-	int firstZero_index = 0;
+	int firstZero_index = -1;
 	int increment = 0;
 
 	for (int i = 0; i < n; i++)
@@ -31,16 +38,19 @@ int main()
 
 		if (numbers[i] == 0)
 		{
-			if (firstZero_flag)
+			if (firstZero_index == -1) firstZero_index = i;
+			else 
 			{
-				firstZero_flag = false;
-				firstZero_index = i;
+				for (int j = 0; j < increment / 2; j++) 
+					numbers[i - j - 1] -= increment - 1 - 2 * j;
 			}
-			else for (int j = 0; j < increment / 2; j++) numbers[i - j - 1] -= increment - 1 - 2 * j;
 
 			increment = 0;
 		}
-		else numbers[i] = ++increment;
+		else 
+		{
+			numbers[i] = ++increment;
+		}
 	}
 
 	for (int i = 0; i < n; i++)

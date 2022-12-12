@@ -1,3 +1,5 @@
+// Успешная посылка: 78886703
+
 #include <iostream>
 #include <set>
 #include <vector>
@@ -26,17 +28,13 @@ int main()
     {
         std::string str;
         in >> str;
-        for(auto s : str)
-        {
-            if(s > 48 && s < 58) mas[s - 48]++;
-        }
+        for(auto s : str) 
+            if(s > '0' && s <= '9') mas[s - '0']++;
     }
 
     int result = 0;
-    for(int i = 1; i < 10; i++)
-    {
+    for(int i = 1; i < 10; i++) 
         if(mas[i] > 0 && mas[i] <= 2 * k) result++;
-    }
 
     out << result;
 	
