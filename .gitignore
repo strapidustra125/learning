@@ -32,7 +32,7 @@
 *.app
 
 # IDE
-*/.vscode
+.vscode
 
 # All "build" dirs
 build

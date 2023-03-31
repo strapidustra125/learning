@@ -2,6 +2,7 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 
+# Характеристики проекта "rim_project"
 set(PROJECT "course")
 project(${PROJECT} VERSION 1.0 LANGUAGES CXX)
 
@@ -11,7 +12,7 @@ project(${PROJECT} VERSION 1.0 LANGUAGES CXX)
 # -Wextra    - дополнительные варнинги
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wextra")
 
-add_definitions(-DMY_IDE -DLINUX -D__cplusplus=201703L)
+add_definitions(-DMY_IDE -D__cplusplus=201703L)
 
 
 

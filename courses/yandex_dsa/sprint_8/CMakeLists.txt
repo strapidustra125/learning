@@ -2,6 +2,7 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 
+# Характеристики проекта "rim_project"
 set(PROJECT "course")
 project(${PROJECT} VERSION 1.0 LANGUAGES CXX)
 

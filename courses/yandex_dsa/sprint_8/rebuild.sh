@@ -5,7 +5,12 @@ echo -e "\nBuilding...\n"
 # Очистка директории сборки
 rm -R ./build
 
-ARG="task"
+ARG=$1
+if [[ ${ARG} == "" ]]
+then
+    echo -e "\nError: Script must have the argument: name of source!\n"
+    exit
+fi
 
 mkdir ./build
 
@@ -14,7 +19,7 @@ cd ./build || exit
 echo -e "Starting \"cmake\":\n"
 
 #Запуск CMAKE
-cmake -DTARGET=${ARG} -DCMAKE_BUILD_TYPE=Debug ..
+cmake -DTARGET=${ARG} ..
 
 echo -e "\n\"cmake\" finished!\n\n"
 
