@@ -60,5 +60,6 @@
         "typeindex": "cpp",
         "cassert": "cpp",
         "unordered_set": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/nikolay/Documents/repo/github/learning/C++/helping"
 }
