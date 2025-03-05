@@ -36,3 +36,6 @@
 
 # All "build" dirs
 build
+
+# Executable applications
+application
