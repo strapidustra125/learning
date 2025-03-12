@@ -3,47 +3,39 @@
 
 // ---------------------------------------------------------------------------------------------- //
 
-/**
- * Интерфейс Продукта объявляет операции, которые должны выполнять все
- * конкретные продукты.
- */
-
-class Product
+// Интерфейс Продукта объявляет операции, которые должны выполнять все конкретные продукты.
+class IFurniture
 {
 
 public:
 
-    virtual ~Product() {}
+    virtual ~IFurniture() {}
     virtual std::string Operation() const = 0;
 
 };
 
-/**
- * Конкретные Продукты предоставляют различные реализации интерфейса Продукта.
- */
+// Конкретные Продукты предоставляют различные реализации интерфейса Продукта.
 
-class ConcreteProduct1 : public Product
+class Table : public IFurniture
 {
 
 public:
 
     std::string Operation() const override
     {
-        return "{Result of the ConcreteProduct1}";
+        return "{Result of the Table}";
     }
-
 };
 
-class ConcreteProduct2 : public Product
+class Chair : public IFurniture
 {
 
 public:
 
     std::string Operation() const override
     {
-        return "{Result of the ConcreteProduct2}";
+        return "{Result of the Chair}";
     }
-
 };
 
 
@@ -53,7 +45,7 @@ public:
  * Класс Создатель объявляет фабричный метод, который должен возвращать объект класса Продукт.
  * Подклассы Создателя обычно предоставляют реализацию этого метода.
  */
-class Creator
+class Factory
 {
 
     /**
@@ -63,8 +55,8 @@ class Creator
 
 public:
 
-    virtual ~Creator(){};
-    virtual Product * FactoryMethod() const = 0;
+    virtual ~Factory(){};
+    virtual IFurniture * FactoryMethod() const = 0;
 
     /**
      * Также заметьте, что, несмотря на название, основная обязанность Создателя
@@ -77,10 +69,10 @@ public:
     std::string SomeOperation() const
     {
         // Вызываем фабричный метод, чтобы получить объект-продукт.
-        Product * product = this->FactoryMethod();
+        IFurniture * product = this->FactoryMethod();
 
         // Далее, работаем с этим продуктом.
-        std::string result = "Creator: The same creator's code has just worked with " + product->Operation();
+        std::string result = "Factory: The same Factory's code has just worked with " + product->Operation();
 
         delete product;
 
@@ -93,33 +85,31 @@ public:
 /**
  * Конкретные Создатели переопределяют фабричный метод для того, чтобы изменить
  * тип результирующего продукта.
+ *
+ * Обратите внимание, что сигнатура метода по-прежнему использует тип
+ * абстрактного продукта, хотя фактически из метода возвращается конкретный
+ * продукт. Таким образом, Создатель может оставаться независимым от
+ * конкретных классов продуктов.
  */
-class ConcreteCreator1 : public Creator
+class TableFactory : public Factory
 {
-
-    /**
-     * Обратите внимание, что сигнатура метода по-прежнему использует тип
-     * абстрактного продукта, хотя фактически из метода возвращается конкретный
-     * продукт. Таким образом, Создатель может оставаться независимым от
-     * конкретных классов продуктов.
-     */
 
 public:
 
-    Product * FactoryMethod() const override
+    IFurniture * FactoryMethod() const override
     {
-        return new ConcreteProduct1();
+        return new Table();
     }
 };
 
-class ConcreteCreator2 : public Creator
+class ChairFactory : public Factory
 {
 
 public:
 
-    Product* FactoryMethod() const override
+    IFurniture * FactoryMethod() const override
     {
-        return new ConcreteProduct2();
+        return new Chair();
     }
 };
 
@@ -130,43 +120,34 @@ public:
  * базовый интерфейс. Пока клиент продолжает работать с создателем через базовый
  * интерфейс, вы можете передать ему любой подкласс создателя.
  */
-void ClientCode(const Creator& creator)
+void ClientCode(const Factory & Factory)
 {
 // ...
-    std::cout << "Client: I'm not aware of the creator's class, but it still works.\n"
-              << creator.SomeOperation() << std::endl;
+    std::cout << "Client: I'm not aware of the Factory's class, but it still works.\n"
+              << Factory.SomeOperation() << std::endl;
 // ...
 }
 
 // ---------------------------------------------------------------------------------------------- //
 
-/**
- * Приложение выбирает тип создателя в зависимости от конфигурации или среды.
- */
+// Приложение выбирает тип создателя в зависимости от конфигурации или среды.
 
 int main()
 {
-    std::cout << "App: Launched with the ConcreteCreator1.\n";
+    std::cout << "App: Launched with the TableFactory.\n";
 
-    Creator* creator = new ConcreteCreator1();
-    ClientCode(*creator);
+    Factory * tableFactory = new TableFactory();
+    ClientCode(*tableFactory);
 
     std::cout << std::endl;
 
-    std::cout << "App: Launched with the ConcreteCreator2.\n";
+    std::cout << "App: Launched with the ChairFactory.\n";
 
-    Creator* creator2 = new ConcreteCreator2();
-    ClientCode(*creator2);
+    Factory * chairFactory = new ChairFactory();
+    ClientCode(*chairFactory);
 
-    delete creator;
-    delete creator2;
-
-    return 0;
-}
-
-
-int main()
-{
+    delete tableFactory;
+    delete chairFactory;
 
     return 0;
 }

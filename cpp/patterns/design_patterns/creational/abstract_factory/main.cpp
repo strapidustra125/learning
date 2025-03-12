@@ -7,12 +7,12 @@
  * Каждый отдельный продукт семейства продуктов должен иметь базовый интерфейс.
  * Все вариации продукта должны реализовывать этот интерфейс.
  */
-class AbstractProductA
+class Table
 {
 
 public:
 
-    virtual ~AbstractProductA() {};
+    virtual ~Table() {};
     virtual std::string UsefulFunctionA() const = 0;
 
 };
@@ -20,7 +20,7 @@ public:
 /**
 * Конкретные продукты создаются соответствующими Конкретными Фабриками.
 */
-class ConcreteProductA1 : public AbstractProductA
+class ConcreteProductA1 : public Table
 {
 
 public:
@@ -32,7 +32,7 @@ public:
 
 };
 
-class ConcreteProductA2 : public AbstractProductA
+class ConcreteProductA2 : public Table
 {
 
 public:
@@ -68,7 +68,7 @@ public:
      * имеют одинаковую вариацию и, следовательно, совместимы.
      */
 
-    virtual std::string AnotherUsefulFunctionB(const AbstractProductA & collaborator) const = 0;
+    virtual std::string AnotherUsefulFunctionB(const Table & collaborator) const = 0;
 
 };
 
@@ -90,7 +90,7 @@ public:
      * Продукт B1 может корректно работать только с Продуктом A1. Тем не менее, он
      * принимает любой экземпляр Абстрактного Продукта А в качестве аргумента.
      */
-    std::string AnotherUsefulFunctionB(const AbstractProductA & collaborator) const override
+    std::string AnotherUsefulFunctionB(const Table & collaborator) const override
     {
         const std::string result = collaborator.UsefulFunctionA();
         return "The result of the B1 collaborating with ( " + result + " )";
@@ -112,7 +112,7 @@ public:
      * Продукт B2 может корректно работать только с Продуктом A2. Тем не менее, он
      * принимает любой экземпляр Абстрактного Продукта А в качестве аргумента.
      */
-    std::string AnotherUsefulFunctionB(const AbstractProductA & collaborator) const override
+    std::string AnotherUsefulFunctionB(const Table & collaborator) const override
     {
         const std::string result = collaborator.UsefulFunctionA();
         return "The result of the B2 collaborating with ( " + result + " )";
@@ -134,7 +134,7 @@ class AbstractFactory
 
 public:
 
-    virtual AbstractProductA * CreateProductA() const = 0;
+    virtual Table * CreateProductA() const = 0;
     virtual AbstractProductB * CreateProductB() const = 0;
 
 };
@@ -150,7 +150,7 @@ class ConcreteFactory1 : public AbstractFactory
 
 public:
 
-    AbstractProductA * CreateProductA() const override
+    Table * CreateProductA() const override
     {
         return new ConcreteProductA1();
     }
@@ -170,7 +170,7 @@ class ConcreteFactory2 : public AbstractFactory
 
 public:
 
-    AbstractProductA * CreateProductA() const override
+    Table * CreateProductA() const override
     {
         return new ConcreteProductA2();
     }
@@ -192,7 +192,7 @@ public:
 
 void ClientCode(const AbstractFactory & factory)
 {
-    const AbstractProductA * product_a = factory.CreateProductA();
+    const Table * product_a = factory.CreateProductA();
     const AbstractProductB * product_b = factory.CreateProductB();
 
     std::cout << product_b->UsefulFunctionB() << "\n";
