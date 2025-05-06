@@ -20,26 +20,29 @@
 # Настройка переменных окружения
 
 # Компилятор
-CXX			= g++
+CXX				= g++
 
 # Опция дебага (-g)
-DEBUG   	= -g
+DEBUG   		= -g
+
+# Опция оптимизации
+OPTIMIZATION	= -O0
 
 # Флаги для компилятора
-CXXFLAGS	= -Wall $(DEBUG) -std=c++17
+CXXFLAGS		= -Wall $(DEBUG) $(OPTIMIZATION) -std=c++17
 
 # Линкуемые библиотеки
-LDLIBS		= -pthread
+LDLIBS			= -pthread
 
 # Включает в переменные все файлы с расширениями .cpp и .h соответственно из текущей директории
-SOURCES		= $(wildcard *.cpp)
-INCLUDES	= $(wildcard *.h)
+SOURCES			= $(wildcard *.cpp)
+INCLUDES		= $(wildcard *.h)
 
 # Берет все содержимое переменной SOURCES и заменяет .cpp на .o
-OBJECTS		= $(SOURCES:.cpp=.o)
+OBJECTS			= $(SOURCES:.cpp=.o)
 
 # Имя целевого исполняемого файла
-EXECUTABLE	= application
+EXECUTABLE		= application
 
 
 # ------------------------------------------------------------------------------------------------ #

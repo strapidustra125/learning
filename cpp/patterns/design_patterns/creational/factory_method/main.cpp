@@ -3,73 +3,69 @@
 
 // ---------------------------------------------------------------------------------------------- //
 
-// Интерфейс Продукта объявляет операции, которые должны выполнять все конкретные продукты.
-class IFurniture
+// Интерфейс объявляет операции, которые должны выполнять все конкретные документы
+class IDocument
 {
 
 public:
 
-    virtual ~IFurniture() {}
-    virtual std::string Operation() const = 0;
+    virtual ~IDocument()    = default;
+
+    virtual void create()   = 0;
+    virtual void read()     = 0;
+    virtual void update()   = 0;
+    virtual void remove()   = 0;
 
 };
 
-// Конкретные Продукты предоставляют различные реализации интерфейса Продукта.
+// Конкретные документы предоставляют различные реализации интерфейса
 
-class Table : public IFurniture
+class TxtDocument : public IDocument
 {
 
 public:
 
-    std::string Operation() const override
-    {
-        return "{Result of the Table}";
-    }
+    void create()   override    {   std::cout << ".txt document created"    << std::endl; }
+    void read()     override    {   std::cout << ".txt document read"       << std::endl; }
+    void update()   override    {   std::cout << ".txt document updater"    << std::endl; }
+    void remove()   override    {   std::cout << ".txt document removed"    << std::endl; }
 };
 
-class Chair : public IFurniture
+class DocxDocument : public IDocument
 {
 
 public:
 
-    std::string Operation() const override
-    {
-        return "{Result of the Chair}";
-    }
+    void create()   override    {   std::cout << ".docx document created"    << std::endl; }
+    void read()     override    {   std::cout << ".docx document read"       << std::endl; }
+    void update()   override    {   std::cout << ".docx document updater"    << std::endl; }
+    void remove()   override    {   std::cout << ".docx document removed"    << std::endl; }
 };
 
 
 // ---------------------------------------------------------------------------------------------- //
 
-/**
- * Класс Создатель объявляет фабричный метод, который должен возвращать объект класса Продукт.
- * Подклассы Создателя обычно предоставляют реализацию этого метода.
- */
-class Factory
+// Фабрика объявляет фабричный метод, который должен возвращать объект класса IDocument
+class DocumentFactory
 {
 
-    /**
-     * Обратите внимание, что Создатель может также обеспечить реализацию
-     * фабричного метода по умолчанию.
-     */
+    // Создатель может также обеспечить реализацию фабричного метода по умолчанию
 
 public:
 
-    virtual ~Factory(){};
-    virtual IFurniture * FactoryMethod() const = 0;
+    virtual ~DocumentFactory()                          = default;
 
-    /**
-     * Также заметьте, что, несмотря на название, основная обязанность Создателя
-     * не заключается в создании продуктов. Обычно он содержит некоторую базовую
-     * бизнес-логику, которая основана на объектах Продуктов, возвращаемых
-     * фабричным методом. Подклассы могут косвенно изменять эту бизнес-логику,
-     * переопределяя фабричный метод и возвращая из него другой тип продукта.
-     */
+    virtual IDocument * FactoryMethod() const   = 0;
+
+    // Также заметьте, что, несмотря на название, основная обязанность Создателя не заключается в
+    // создании продуктов. Обычно он содержит некоторую базовую бизнес-логику, которая основана на
+    // объектах Продуктов, возвращаемых фабричным методом. Подклассы могут косвенно изменять эту
+    // бизнес-логику, переопределяя фабричный метод и возвращая из него другой тип продукта.
 
     std::string SomeOperation() const
     {
         // Вызываем фабричный метод, чтобы получить объект-продукт.
-        IFurniture * product = this->FactoryMethod();
+        IDocument * document = this->FactoryMethod();
 
         // Далее, работаем с этим продуктом.
         std::string result = "Factory: The same Factory's code has just worked with " + product->Operation();
